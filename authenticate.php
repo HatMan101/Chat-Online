@@ -16,13 +16,45 @@ if ($conn -> connect_error) {
     die('Failed to connect to MySQL: ' . $conn -> connect_error);
 }
 
-if ($conn -> query($_SESSION['accounts']) === TRUE) {
-    echo "Table created successfully or already exist";
-} else {
+// Skapa/checka om bordet finns
+if (!$conn -> query($_SESSION['accounts']) === TRUE) {
     echo "Error creating table: " . $conn -> connect_error;
 }
 
+// Kollar efter användar och lösenord
+if (!isset($_POST['username'], $_POST['password'])) {
+    die('Please fill both the username and password fields!');
+}
 
+if ($stmt = $conn -> prepare('SELECT id, password FROM accounts WHERE username = ?')) {
+    $stmt -> bind_param('s', $_POST['username']);
+    $stmt -> execute();
+
+    $stmt -> store_result();
+    if ($stmt -> num_rows > 0) {
+        $stmt -> bind_result($id, $password);
+        $stmt -> fetch();
+
+        // Om kontot finns, verifiera lösenorder
+        if ($_POST['password'] === $password) {
+            // Användaren loggas in
+            // Använd sessions, är typ som cookies
+            session_regenerate_id();
+            $_SESSION['loggedin'] = TRUE;
+            $_SESSION['name'] = $_POST['username'];
+            $_SESSION['id'] = $id;
+            echo 'Welcome ' . $_SESSION['name'] . '!';
+        } else {
+            // Fel lösenord
+            echo 'Incorrect username and/or password!';
+        }
+    } else {
+        // Fel användarnamn
+        echo 'Incorrect username and/or password!';
+    }
+
+    $stmt -> close();
+}
 
 $conn -> close();
 session_abort();
