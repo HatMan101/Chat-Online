@@ -13,7 +13,7 @@ require '../dbFiles/dbChat.php';
     <?php require_once '../components/head.html'; ?>
 </head>
 <body>
-    <?php require_once '../components/header.html'; ?>
+    <?php require_once '../components/navbar.html'; ?>
     <main>
         <h1>Chat Window</h1>
     </main>

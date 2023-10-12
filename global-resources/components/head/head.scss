@@ -1,0 +1,7 @@
+@use '../../assets/style/main.css';
+@use '../navbar/_navbar.css';
+@use '../footer/_footer.css';
+
+html {
+  min-width: 500px;
+}
