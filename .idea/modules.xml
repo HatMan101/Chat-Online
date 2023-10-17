@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/WebServProject.iml" filepath="$PROJECT_DIR$/.idea/WebServProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../chat-online/.idea/WebServerProjekt.iml" filepath="$PROJECT_DIR$/../chat-online/.idea/WebServerProjekt.iml" />
     </modules>
   </component>
 </project>

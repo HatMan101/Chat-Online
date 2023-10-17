@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>Sign-In</title>
-    <?php require_once "../components/head.html"; ?>
+    <?php require_once "../global-resources/components/head/head.html"; ?>
 </head>
 <body>
     <main>

@@ -9,10 +9,10 @@ if (!isset($_SESSION['logged-in'])) {
 <html lang="en">
 <head>
     <title>Settings</title>
-    <?php require_once '../components/head.html'; ?>
+    <?php require_once '../global-resources/components/head/head.html'; ?>
 </head>
 <body>
-    <?php require_once '../components/navbar.html'; ?>
+    <?php require_once '../global-resources/components/navbar/navbar.html'; ?>
     <main>
         <h1>Settings</h1>
     </main>
