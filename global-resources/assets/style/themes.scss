@@ -1,0 +1,15 @@
+@use "variables";
+@use "mixins";
+
+:root.light {
+  @include mixins.spread-map(variables.$theme-map-light);
+}
+:root.dark {
+  @include mixins.spread-map(variables.$theme-map-dark);
+}
+
+:root.theme-transition,
+:root.theme-transition * {
+  transition: background-color 1000ms !important;
+  transition-delay: 0s !important;
+}

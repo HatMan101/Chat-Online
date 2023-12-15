@@ -1,0 +1,23 @@
+// DEFINE SCSS VARIABLES
+$--theme-primary: --theme-primary;
+
+$--theme-button: --theme-button;
+$--theme-button-active: --theme-button-active;
+
+
+
+// Default theme map
+$theme-map-light: (
+        $--theme-primary: white,
+
+
+        $--theme-button: --theme-light-button,
+        $--theme-button-active: --theme-light-button-active,
+);
+// Dark theme map
+$theme-map-dark: (
+        $--theme-primary: #1e1e1e,
+
+        $--theme-button: --theme-dark-button,
+        $--theme-button-active: --theme-dark-button-active,
+);

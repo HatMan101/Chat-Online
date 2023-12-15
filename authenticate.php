@@ -1,5 +1,5 @@
 <?php
-include 'server_file.php';
+require 'server_file.php';
 
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 if ( !isset($_POST['username'], $_POST['password']) ) {
@@ -9,11 +9,13 @@ if ( !isset($_POST['username'], $_POST['password']) ) {
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
 if ($stmt = $_SESSION['conn'] -> prepare('SELECT id, password FROM accounts WHERE username = ?')) {
-    // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
     $stmt -> bind_param('s', $_POST['username']);
     $stmt -> execute();
     // Store the result, we can check if the account exists in the database.
-    $stmt->store_result();
+    $stmt -> store_result();
+
+    $id = null;
+    $password = null;
 
     if ($stmt -> num_rows > 0) {        // Account exists, now we verify the password.
         $stmt -> bind_result($id, $password);
@@ -31,7 +33,7 @@ if ($stmt = $_SESSION['conn'] -> prepare('SELECT id, password FROM accounts WHER
             exit();
         }
 
-// Incorrect password
+        // Incorrect password
         //echo 'Incorrect username and/or password!';
         echo 'Invalid password';
     } else {

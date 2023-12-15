@@ -1,3 +1,14 @@
-nav {
+@use "../../assets/style/themes";
+@use "../../assets/style/mixins";
+@import "../../assets/style/variables";
 
+
+
+header {
+  background-color: mixins.theme-var($--theme-primary);
+
+
+  .switch {
+    margin: 4px;
+  }
 }

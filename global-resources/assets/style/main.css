@@ -1,3 +1,57 @@
+:root.light {
+  --theme-primary: white;
+  --theme-button: --theme-light-button;
+  --theme-button-active: --theme-light-button-active;
+}
 
+:root.dark {
+  --theme-primary: #1e1e1e;
+  --theme-button: --theme-dark-button;
+  --theme-button-active: --theme-dark-button-active;
+}
+
+:root.theme-transition,
+:root.theme-transition * {
+  transition: background-color 1000ms !important;
+  transition-delay: 0s !important;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 30px;
+}
+.switch input {
+  display: none;
+}
+.switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 35px;
+}
+.switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  scale: 0.9;
+  left: 1px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 100%;
+}
+.switch input:checked + .slider {
+  background-color: #ff278c;
+}
+.switch input:checked + .slider:before {
+  transform: translateX(23px);
+}
 
 /*# sourceMappingURL=main.css.map */

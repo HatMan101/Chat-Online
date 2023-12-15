@@ -1,0 +1,47 @@
+@use "../../assets/style/themes";
+@use "../../assets/style/mixins";
+@import "../../assets/style/variables";
+
+// START Toggle_Switch
+$--button: blue;
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 30px;
+  input {
+    display: none;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 35px;
+  }
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 30px;
+    scale: 0.9;
+    left: 1px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 100%;
+  }
+
+  input:checked + .slider {
+    background-color: #ff278c;
+
+    &:before {
+      transform: translateX(52px - 29px);
+    }
+  }
+}
+// END Toggle_Switch

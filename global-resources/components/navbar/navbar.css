@@ -1,3 +1,26 @@
+:root.light {
+  --theme-primary: white;
+  --theme-button: --theme-light-button;
+  --theme-button-active: --theme-light-button-active;
+}
 
+:root.dark {
+  --theme-primary: #1e1e1e;
+  --theme-button: --theme-dark-button;
+  --theme-button-active: --theme-dark-button-active;
+}
+
+:root.theme-transition,
+:root.theme-transition * {
+  transition: background-color 1000ms !important;
+  transition-delay: 0s !important;
+}
+
+header {
+  background-color: var(--theme-primary);
+}
+header .switch {
+  margin: 4px;
+}
 
 /*# sourceMappingURL=navbar.css.map */

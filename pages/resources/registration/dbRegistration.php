@@ -1,5 +1,5 @@
 <?php
-include '../server_file.php';
+require __DIR__ . '/../../../server_file.php';
 
 // Now we check if the data was submitted, isset() function will check if the data exists.
 if (!isset($_POST['username'], $_POST['password'], $_POST['email'])) {
@@ -14,11 +14,12 @@ if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['emai
 
 // We need to check if the account with that username exists.
 if ($stmt = $_SESSION['conn'] -> prepare('SELECT id, password FROM accounts WHERE username = ?')) {
-    // Bind parameters (s = string, i = int, b = blob, etcetera), hash the password using the PHP password_hash function.
+    // Bind parameters, hash the password using the PHP password_hash function.
     $stmt -> bind_param('s', $_POST['username']);
     $stmt -> execute();
+    // Store the result, we can check if the account exists in the database.
     $stmt -> store_result();
-    // Store the result, so we can check if the account exists in the database.
+
     if ($stmt -> num_rows > 0) {
         // Username already exists
         echo 'Username exists, please choose another!';

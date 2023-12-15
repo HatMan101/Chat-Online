@@ -3,26 +3,29 @@
     <title>component-navbar</title>
     <link rel="stylesheet" href="../global-resources/components/navbar/navbar.css" type="text/css">
 </head>
-<header>
-    <nav class="navbar navbar-expand-sm bg-light">
+<header class="border-bottom border-2 shadow-sm">
+    <nav class="navbar navbar-expand-sm">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../pages/chat.php">
-                <img src="../../assets/img/logo.png" alt="Chat/home" width="45" height="45">
+            <a class="navbar-brand" href="chat.php">
+                <img src="../global-resources/assets/img/logo.png" alt="Chat/home" width="45" height="45">
             </a>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto me-0">
+                    <label class="switch" id="themeSwitch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
                     <!-- static navigation buttons -->
-                    <a class="nav-link active" aria-current="page" href="../pages/chat.php">Chat</a>
-                    <a class="nav-link" href="../pages/features.php">Features</a>
+                    <a class="nav-link active" aria-current="page" href="../../../pages/chat.php">Chat</a>
+                    <a class="nav-link" href="../../../pages/features.php">Features</a>
                     <!-- dropdown -->
                     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="../pages/profile.php">My Profile</a></li>
-                                    <li><a class="dropdown-item" href="../pages/settings.php">Settings</a></li>
-                                    <li><a class="dropdown-item" action="">Logout</a></li>
+                                    <li><a class="dropdown-item" href="../../../pages/profile.php">My Profile</a></li>
+                                    <li><a class="dropdown-item">Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -31,4 +34,5 @@
             </div>
         </div>
     </nav>
+    <script src="../global-resources/assets/style/theme.js"></script>
 </header>
