@@ -20,6 +20,7 @@ $_SESSION['chat_message'] = "CREATE TABLE chat_message (
     chat_message_id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     to_user_id int(11) NOT NULL,
     from_user_id int(11) NOT NULL,
+    chat_message text NOT NULL,
     timestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     status int(1) NOT NULL
 )";

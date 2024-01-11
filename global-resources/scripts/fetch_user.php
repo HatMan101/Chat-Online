@@ -15,8 +15,7 @@ if ($statement->execute()) {
     $output = '
     <table class="table table-bordered table-striped">
         <tr>
-            <td>Username</td>
-            <td>Status</td>
+            <td>Registered Users</td>
         </tr>
     ';
 
@@ -34,8 +33,7 @@ if ($statement->execute()) {
 
         $output .= '
         <tr class="start_chat" data-touserid="'.$row['user_id'].'" data-tousername="'.$row['username'].'">
-            <td>'.$row['username'].'</td>
-            <td>'.$status.'</td>
+            <td>'.$row['username']. " - " .$status.'</td>
         </tr>
         ';
     }
