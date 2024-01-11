@@ -21,7 +21,6 @@
             </form>
         </div>
         <p>If you don't have an account. Please register <a href="registration.php">HERE</a></p>
-        <p></p>
     </main>
 </body>
 </html>

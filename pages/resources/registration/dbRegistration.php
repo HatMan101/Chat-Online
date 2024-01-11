@@ -1,6 +1,28 @@
 <?php
 require __DIR__ . '/../../../server_file.php';
 
+// Check if the accounts table exists
+$tableExistsQuery = "SHOW TABLES LIKE 'accounts'";
+$tableExistsResult = $_SESSION['conn']->query($tableExistsQuery);
+
+if ($tableExistsResult) {
+    if ($tableExistsResult->num_rows > 0) {
+        echo 'Table "accounts" exists in the database.';
+    } else {
+        // If the 'accounts' table does not exist, create it
+        $createTableQuery = $_SESSION['accounts'];
+
+        if ($_SESSION['conn']->query($createTableQuery) === TRUE) {
+        } else {
+            echo 'Error creating table: ' . $_SESSION['conn']->error;
+            die(); // Exit the script
+        }
+    }
+} else {
+    echo 'Error checking table existence: ' . $_SESSION['conn']->error;
+    die(); // Exit the script
+}
+
 // Now we check if the data was submitted, isset() function will check if the data exists.
 if (!isset($_POST['username'], $_POST['password'], $_POST['email'])) {
     // Could not get the data that should have been sent.
@@ -13,24 +35,40 @@ if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['emai
 }
 
 // We need to check if the account with that username exists.
-if ($stmt = $_SESSION['conn'] -> prepare('SELECT id, password FROM accounts WHERE username = ?')) {
+if ($stmt = $_SESSION['conn']->prepare('SELECT user_id, password FROM accounts WHERE username = ?')) {
     // Bind parameters, hash the password using the PHP password_hash function.
-    $stmt -> bind_param('s', $_POST['username']);
-    $stmt -> execute();
+    $stmt->bind_param('s', $_POST['username']);
+    $stmt->execute();
     // Store the result, we can check if the account exists in the database.
-    $stmt -> store_result();
+    $stmt->store_result();
 
-    if ($stmt -> num_rows > 0) {
+    if ($stmt->num_rows > 0) {
         // Username already exists
         echo 'Username exists, please choose another!';
-    } else if ($stmt = $_SESSION['conn'] -> prepare('INSERT INTO accounts (username, password, email) VALUES (?, ?, ?)')) {
+    } else if ($stmt = $_SESSION['conn']->prepare('INSERT INTO accounts (username, password, email) VALUES (?, ?, ?)')) {
         // Username do not exist, insert new account
         // We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $stmt -> bind_param('sss', $_POST['username'], $password, $_POST['email']);
-        $stmt -> execute();
-        echo 'Wow, you created a account';
-        // header('Location: pages/login.php');
+        $stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
+        $stmt->execute();
+
+        $statement = $_SESSION['conn']->prepare('SELECT user_id FROM accounts WHERE username = ? AND password = ?');
+        $statement->bind_param('ss', $_POST['username'], $password);  // Assuming both username and password are strings, adjust "ss" accordingly
+        $statement->execute();
+        $userId = 0;
+        $statement->bind_result($userId);
+
+        if ($statement->fetch()) {
+            $statement->close();
+            // Rows exist, $userId contains the user id
+            $less_statement = $_SESSION['conn']->prepare('INSERT INTO accounts_details (user_id) VALUES (?)');
+            $less_statement->bind_param('i', $userId);
+            $less_statement->execute();
+            $less_statement->close();
+        } else {
+            // No matching user found
+            echo "No data to insert";
+        }
     } else {
         // Something is wrong with the SQL statement, so you must check to make sure your accounts table exists with all three fields.
         echo 'Could not prepare statement!';

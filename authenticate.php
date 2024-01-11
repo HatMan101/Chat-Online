@@ -8,27 +8,27 @@ if ( !isset($_POST['username'], $_POST['password']) ) {
 }
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $_SESSION['conn'] -> prepare('SELECT id, password FROM accounts WHERE username = ?')) {
-    $stmt -> bind_param('s', $_POST['username']);
-    $stmt -> execute();
+if ($stmt = $_SESSION['conn']->prepare('SELECT user_id, password FROM accounts WHERE username = ?')) {
+    $stmt->bind_param('s', trim($_POST['username']));
+    $stmt->execute();
     // Store the result, we can check if the account exists in the database.
-    $stmt -> store_result();
+    $stmt->store_result();
 
-    $id = null;
+    $user_id = null;
     $password = null;
 
-    if ($stmt -> num_rows > 0) {        // Account exists, now we verify the password.
-        $stmt -> bind_result($id, $password);
-        $stmt -> fetch();
+    if ($stmt->num_rows > 0) {        // Account exists, now we verify the password.
+        $stmt->bind_result($user_id, $password);
+        $stmt->fetch();
 
-        // Note: remember to use password_hash in your registration file to store the hashed passwords.
-        if (password_verify($_POST['password'], $password)) {
+        // Using password_hash
+        if (password_verify(trim($_POST['password']), $password)) {
             // Verification success! User has logged-in!
             // Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
             session_regenerate_id();
             $_SESSION['logged-in'] = TRUE;
             $_SESSION['name'] = $_POST['username'];
-            $_SESSION['id'] = $id;
+            $_SESSION['user_id'] = $user_id;
             header("Location: pages/chat.php");
             exit();
         }

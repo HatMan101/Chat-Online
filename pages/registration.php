@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>Registration</title>
-    <?php require_once "../global-resources/components/head/head.html"; ?>
+    <?php require_once "../global-resources/components/head.html"; ?>
 </head>
 <body>
     <main>

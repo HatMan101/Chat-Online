@@ -2,6 +2,10 @@
 @use "../../assets/style/mixins";
 @import "../../assets/style/variables";
 
+html {
+  overflow-x: hidden;
+}
+
 // START Toggle_Switch
 $--button: blue;
 .switch {

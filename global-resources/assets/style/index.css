@@ -1,0 +1,29 @@
+:root.light {
+  --theme-primary: white;
+  --theme-button: --theme-light-button;
+  --theme-button-active: --theme-light-button-active;
+}
+
+:root.dark {
+  --theme-primary: #1e1e1e;
+  --theme-button: --theme-dark-button;
+  --theme-button-active: --theme-dark-button-active;
+}
+
+:root.theme-transition,
+:root.theme-transition * {
+  transition: background-color 1000ms !important;
+  transition-delay: 0s !important;
+}
+
+.user_dialog_ {
+  min-height: calc(100vh - 75px);
+  display: flex;
+  flex-direction: column;
+}
+.user_dialog_ .chat_history {
+  height: 100%;
+  flex: 1;
+}
+
+/*# sourceMappingURL=index.css.map */

@@ -16,6 +16,10 @@
   transition-delay: 0s !important;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 .switch {
   position: relative;
   display: inline-block;

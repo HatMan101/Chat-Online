@@ -1,0 +1,14 @@
+@use "../../assets/style/themes";
+@use "../../assets/style/mixins";
+@import "../../assets/style/variables";
+
+.user_dialog_ {
+  min-height: calc(100vh - 75px);
+  display: flex;
+  flex-direction: column;
+
+  .chat_history {
+    height: 100%;
+    flex: 1;
+  }
+}
