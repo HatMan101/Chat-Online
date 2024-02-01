@@ -16,15 +16,19 @@
   transition-delay: 0s !important;
 }
 
+#userDetails .start_chat {
+  cursor: pointer;
+}
+
 .user_dialog {
-  min-height: calc(100vh - 75px);
+  height: calc(100vh - 75px);
   display: flex;
   flex-direction: column;
 }
 .user_dialog .chat_history {
   height: 100%;
   flex: 1;
-  background-color: lightgrey;
+  overflow: auto;
 }
 
 /*# sourceMappingURL=index.css.map */

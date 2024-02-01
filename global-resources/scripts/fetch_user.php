@@ -36,7 +36,7 @@ if ($statement->execute()) {
             <td>'.$row['username']. " - " .$status.'</td>
         </tr>
         ';
-    }
+    } 
 
     $output .= '</table>';
 

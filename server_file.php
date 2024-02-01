@@ -9,7 +9,7 @@ $DATABASE_PASS = "V)NGRr9k4[reMnG4";
 $DATABASE_NAME = "chat-online";
 
 $_SESSION['conn'] = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-    if (mysqli_connect_errno()) {
+if (mysqli_connect_errno()) {
     // If there is an error with the connection, stop the script and display the error.
     exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
@@ -53,8 +53,7 @@ function fetch_user_chat_history($from_user_id, $to_user_id) {
     $output = '<ul class="list-unstyled">';
 
     while ($row = $result->fetch_assoc()) {
-        $user_name = '';
-        if ($row['from_user_id'] === $from_user_id) {
+        if ($row['from_user_id'] == $from_user_id) {
             $user_name = '<b class="text-success">You</b>';
         } else {
             $user_name = '<b class="text-danger">' . get_user_name($row['from_user_id']) . '</b>';

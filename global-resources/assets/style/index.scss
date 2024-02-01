@@ -2,14 +2,18 @@
 @use "../../assets/style/mixins";
 @import "../../assets/style/variables";
 
+#userDetails .start_chat {
+  cursor: pointer;
+}
+
 .user_dialog {
-  min-height: calc(100vh - 75px);
+  height: calc(100vh - 75px);
   display: flex;
   flex-direction: column;
 
   .chat_history {
     height: 100%;
     flex: 1;
-    background-color: lightgrey;
+    overflow: auto;
   }
 }

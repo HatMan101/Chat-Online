@@ -1,28 +1,6 @@
 <?php
 require __DIR__ . '/../../../server_file.php';
 
-// Check if the accounts table exists
-$tableExistsQuery = "SHOW TABLES LIKE 'accounts'";
-$tableExistsResult = $_SESSION['conn']->query($tableExistsQuery);
-
-if ($tableExistsResult) {
-    if ($tableExistsResult->num_rows > 0) {
-        echo 'Table "accounts" exists in the database.';
-    } else {
-        // If the 'accounts' table does not exist, create it
-        $createTableQuery = $_SESSION['accounts'];
-
-        if ($_SESSION['conn']->query($createTableQuery) === TRUE) {
-        } else {
-            echo 'Error creating table: ' . $_SESSION['conn']->error;
-            die(); // Exit the script
-        }
-    }
-} else {
-    echo 'Error checking table existence: ' . $_SESSION['conn']->error;
-    die(); // Exit the script
-}
-
 // Now we check if the data was submitted, isset() function will check if the data exists.
 if (!isset($_POST['username'], $_POST['password'], $_POST['email'])) {
     // Could not get the data that should have been sent.
