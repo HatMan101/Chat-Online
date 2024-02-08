@@ -22,7 +22,7 @@ require_once '../global-resources/components/navbar/navbar.html';
             <div id="userDialog" class="user_dialog" title="">
                 <div class="chat_history" data-touserid="" id=""></div>
                 <div class="form-group">
-                    <textarea name="" id="" class="form-control"></textarea>
+                    <textarea name="" id="" class="form-control chat_message"></textarea>
                 </div>
             </div>
         </section>

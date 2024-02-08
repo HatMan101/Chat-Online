@@ -33,11 +33,10 @@ if ($statement->execute()) {
 
         $output .= '
         <tr class="start_chat" data-touserid="'.$row['user_id'].'" data-tousername="'.$row['username'].'">
-            <td>'.$row['username']. " - " .$status.'</td>
+            <td>'.$row['username']. " - " .$status .count_unseen_message($row['user_id'], $_SESSION['user_id']) .fetch_is_type_status($row['user_id']).'</td>
         </tr>
         ';
-    } 
-
+    }
     $output .= '</table>';
 
     echo $output;

@@ -12,8 +12,15 @@
   flex-direction: column;
 
   .chat_history {
+    display: flex;
+    flex-direction: column-reverse;
     height: 100%;
     flex: 1;
     overflow: auto;
+
+    ul {
+      display: flex;
+      flex-direction: column-reverse;
+    }
   }
 }

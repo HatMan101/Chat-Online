@@ -26,9 +26,15 @@
   flex-direction: column;
 }
 .user_dialog .chat_history {
+  display: flex;
+  flex-direction: column-reverse;
   height: 100%;
   flex: 1;
   overflow: auto;
+}
+.user_dialog .chat_history ul {
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 /*# sourceMappingURL=index.css.map */
