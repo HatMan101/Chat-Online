@@ -1,21 +1,25 @@
 <?php
 include '../../server_file.php';
 
-$query = "
-SELECT * FROM accounts 
-WHERE user_id != '".$_SESSION['user_id']."'
+$output = '';
+
+// Load/retrieve friend list
+$query_friend_list = "
+SELECT * FROM user_friend 
+WHERE (uid1 = $_SESSION[user_id] AND status = 'FRIEND')
+OR (uid2 = $_SESSION[user_id] AND status = 'FRIEND')
 ";
 
-$statement = $_SESSION['conn']->prepare($query);
+$stmt_friend_list = $_SESSION['conn']->prepare($query_friend_list);
 
-if ($statement->execute()) {
-    $result = $statement->get_result();
+if ($stmt_friend_list->execute()) {
+    $result = $stmt_friend_list->get_result();
     $rows = $result->fetch_all(MYSQLI_ASSOC);
 
     $output = '
     <table class="table table-bordered table-striped">
         <tr>
-            <td>Registered Users</td>
+            <td>Friends</td>
         </tr>
     ';
 
@@ -37,10 +41,32 @@ if ($statement->execute()) {
         </tr>
         ';
     }
-    $output .= '</table>';
-
-    echo $output;
+    $output .= '
+    </table>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <td>Friend Request</td>
+        </tr>';
 } else {
     // Output or log the error
-    echo $statement->error;
+    echo $stmt_friend_list->error;
 }
+
+// Friend request
+$query_friend_request = "
+SELECT * FROM user_friend 
+WHERE (uid1 = $_SESSION[user_id] AND status = 'REQ_UID2')
+OR (uid2 = $_SESSION[user_id] AND status = 'REQ_UID1')
+";
+
+$stmt_friend_request = $_SESSION['conn']->prepare($query_friend_request);
+
+if ($stmt_friend_request->execute()) {
+    $result = $stmt_friend_request->get_result();
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+}
+
+
+echo $output;
+

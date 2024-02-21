@@ -6,21 +6,24 @@
   cursor: pointer;
 }
 
-.user_dialog {
-  height: calc(100vh - 75px);
-  display: flex;
-  flex-direction: column;
-
-  .chat_history {
+#chatWindow {
+  padding-right: 0;
+  .user_dialog {
+    height: calc(100vh - 75px);
     display: flex;
-    flex-direction: column-reverse;
-    height: 100%;
-    flex: 1;
-    overflow: auto;
+    flex-direction: column;
 
-    ul {
+    .chat_history {
       display: flex;
       flex-direction: column-reverse;
+      height: 100%;
+      flex: 1;
+      overflow: auto;
+
+      ul {
+        display: flex;
+        flex-direction: column-reverse;
+      }
     }
   }
 }

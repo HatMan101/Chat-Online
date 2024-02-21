@@ -20,19 +20,22 @@
   cursor: pointer;
 }
 
-.user_dialog {
+#chatWindow {
+  padding-right: 0;
+}
+#chatWindow .user_dialog {
   height: calc(100vh - 75px);
   display: flex;
   flex-direction: column;
 }
-.user_dialog .chat_history {
+#chatWindow .user_dialog .chat_history {
   display: flex;
   flex-direction: column-reverse;
   height: 100%;
   flex: 1;
   overflow: auto;
 }
-.user_dialog .chat_history ul {
+#chatWindow .user_dialog .chat_history ul {
   display: flex;
   flex-direction: column-reverse;
 }

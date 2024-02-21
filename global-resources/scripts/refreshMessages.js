@@ -80,7 +80,7 @@ $(document).ready(function() {
         })
     }
 
-    // Func for enter key, when pressed send message. If not shift is also pressed
+    // Func for enter key, when pressed send message. If shift isn't also pressed
     function enterKey(e) {
         if (e.type === 'keydown' && e.keyCode === 13 && !e.shiftKey) {
             e.preventDefault();
