@@ -16,26 +16,47 @@
   transition-delay: 0s !important;
 }
 
-#userDetails .start_chat {
+body #addFriendsModal .modal-content {
+  min-height: 400px;
+}
+body #addFriendsModal .modal-content .input-group button {
+  background-color: #2eda00;
+}
+body #addFriendsModal .modal-content .input-group input {
+  margin-right: 1em;
+}
+body main #userDetails p {
+  margin: 0;
+}
+body main #userDetails .start_chat {
   cursor: pointer;
 }
-
-#chatWindow {
+body main #userDetails .friends_table div {
+  display: flex;
+}
+body main #userDetails .friends_table div p:first-child {
+  flex: 1 0 auto;
+}
+body main #userDetails .friends_table div p:last-child {
+  text-align: right;
+  cursor: pointer;
+}
+body main #chatWindow {
   padding-right: 0;
 }
-#chatWindow .user_dialog {
+body main #chatWindow .user_dialog {
   height: calc(100vh - 75px);
   display: flex;
   flex-direction: column;
 }
-#chatWindow .user_dialog .chat_history {
+body main #chatWindow .user_dialog .chat_history {
   display: flex;
   flex-direction: column-reverse;
   height: 100%;
   flex: 1;
   overflow: auto;
 }
-#chatWindow .user_dialog .chat_history ul {
+body main #chatWindow .user_dialog .chat_history ul {
   display: flex;
   flex-direction: column-reverse;
 }

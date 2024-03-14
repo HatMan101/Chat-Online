@@ -2,27 +2,62 @@
 @use "../../assets/style/mixins";
 @import "../../assets/style/variables";
 
-#userDetails .start_chat {
-  cursor: pointer;
-}
+body {
+  #addFriendsModal .modal-content{
+    min-height: 400px;
 
-#chatWindow {
-  padding-right: 0;
-  .user_dialog {
-    height: calc(100vh - 75px);
-    display: flex;
-    flex-direction: column;
+    .input-group {
+      button {
+        background-color: #2eda00;
+      }
+      input {
+        margin-right: 1em;
+      }
+    }
+  }
 
-    .chat_history {
-      display: flex;
-      flex-direction: column-reverse;
-      height: 100%;
-      flex: 1;
-      overflow: auto;
+  main {
+    #userDetails {
+      p {
+        margin: 0;
+      }
 
-      ul {
+      .start_chat {
+        cursor: pointer;
+      }
+      .friends_table div {
         display: flex;
-        flex-direction: column-reverse;
+        p {
+          &:first-child {
+            flex: 1 0 auto;
+          }
+          &:last-child {
+            text-align: right;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    #chatWindow {
+      padding-right: 0;
+      .user_dialog {
+        height: calc(100vh - 75px);
+        display: flex;
+        flex-direction: column;
+
+        .chat_history {
+          display: flex;
+          flex-direction: column-reverse;
+          height: 100%;
+          flex: 1;
+          overflow: auto;
+
+          ul {
+            display: flex;
+            flex-direction: column-reverse;
+          }
+        }
       }
     }
   }

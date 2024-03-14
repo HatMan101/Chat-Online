@@ -10,7 +10,6 @@ $(document).ready(function() {
     setInterval(function() {
         update_user_chat_history()
     }, 2500)
-
     $("textarea").keydown(enterKey);
 
     // Retrieves the other users
@@ -28,14 +27,12 @@ $(document).ready(function() {
     function update_last_activity() {
         $.ajax({
             url:"../global-resources/scripts/update_last_activity.php",
-            success:function(){
-
-            }
+            success:function() {}
         })
     }
 
 
-    // Adds certain attributes, and fetches the chat history on click of a user
+    // Adds certain attributes, and fetches the chat history on-click of a user
     function chat_area(to_user_id, to_user_name) {
         $('#userDialog').attr({
             title: "You have a chat with " + to_user_name,
@@ -60,6 +57,7 @@ $(document).ready(function() {
         fetch_user_chat_history(to_user_id);
     })
 
+
     // On click of a user, retrieves the chat history and updates it in the chat area
     function fetch_user_chat_history(to_user_id) {
         $.ajax({
@@ -80,6 +78,7 @@ $(document).ready(function() {
         })
     }
 
+
     // Func for enter key, when pressed send message. If shift isn't also pressed
     function enterKey(e) {
         if (e.type === 'keydown' && e.keyCode === 13 && !e.shiftKey) {
@@ -96,15 +95,17 @@ $(document).ready(function() {
                         to_user_id: to_user_id,
                         chat_message: chat_message
                     },
-                    success:function (data) {
-                        $('#chat_message_' + to_user_id).val('');
-                        $('#chat_history_' + to_user_id).html(data);
+                    success:function(data) {
+                        $('.chat_message_' + to_user_id).val('');
+                        $('.chat_history_' + to_user_id).html(data);
+                        // KANSKE MÅSTE SÄTTA #chat_history_ ISTÄLLET FÖR .chat_history_
                     }
                 })
             }
         }
     }
-    $(document).on('keydown', '.chat_message', function () {
+    // Shows weather or not the user is typing
+    $(document).on('keydown', '.chat_message', function() {
         let is_type = 'yes';
         $.ajax({
             url: '../global-resources/scripts/update_is_type_status.php',
@@ -112,12 +113,10 @@ $(document).ready(function() {
             data: {
                 is_type: is_type
             },
-            success:function () {
-
-            }
+            success:function() {}
         })
     });
-    $(document).on('blur', '.chat_message', function () {
+    $(document).on('blur', '.chat_message', function() {
         let is_type = 'no';
         $.ajax({
             url: '../global-resources/scripts/update_is_type_status.php',
@@ -125,9 +124,73 @@ $(document).ready(function() {
             data: {
                 is_type: is_type
             },
-            success:function () {
-
-            }
+            success:function() {}
         })
     });
+
+
+    // Opens the add friends modal
+    let addFriendsModal = document.getElementById('addFriendsModal');
+    let closeFriendsModal = document.getElementById('closeFriendsModal');
+    let errorMsg = document.getElementById('addModalErrorMsg');
+    $(document).on('click', '#openFriendsModal', function() {
+        addFriendsModal.style.display = "block";
+        if (!errorMsg.classList.contains('invalid-feedback')) {
+            errorMsg.classList.add('invalid-feedback');
+        }
+    })
+    $(document).on('click', '#addFriendsModal',function(e) {
+        if (e.target.contains(addFriendsModal) ||e.target === closeFriendsModal) {
+            addFriendsModal.style.display = "none";
+        }
+    })
+
+    // Searches for the user on add
+    $(document).on('click', '#buttonAddUsername',function() {
+
+        let input = document.getElementById('inputUsername').value.trim().split("#");
+        if (input[0] === "" || input[1] === "" || isNaN(Number(input[1]))) {
+            errorMsg.classList.remove('invalid-feedback');
+            errorMsg.classList.add('feedback');
+            return;
+        } else {
+            errorMsg.classList.remove('feedback');
+            errorMsg.classList.add('invalid-feedback');
+        }
+
+        $.ajax({
+            url: '../global-resources/scripts/add_friend_request.php',
+            method: 'POST',
+            data: {
+                friend_username: input[0],
+                friend_id: input[1]
+            },
+            success:function() {}
+        })
+    })
+
+    // Friend request accept
+    $(document).on('click', '.accept_friend_request', function() {
+        let friend_id = $(this).attr('id');
+        $.ajax({
+            url: '../global-resources/scripts/accept_friend_request.php',
+            method: 'POST',
+            data: {
+                friend_id: friend_id
+            },
+            success:function() {}
+        })
+    })
+    // Friend request deny
+    $(document).on('click', '.deny_friend_request', function() {
+        let friend_id = $(this).attr('id');
+        $.ajax({
+            url: '../global-resources/scripts/accept_friend_request.php',
+            method: 'POST',
+            data: {
+                friend_id: friend_id
+            },
+            success:function() {}
+        })
+    })
 })
