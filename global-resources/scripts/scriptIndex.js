@@ -84,10 +84,8 @@ $(document).ready(function() {
         if (e.type === 'keydown' && e.keyCode === 13 && !e.shiftKey) {
             e.preventDefault();
             let to_user_id = $(this).attr('data-touserid');
-            let chat_message = $('#chat_message_' + to_user_id).val();
-            if (chat_message.trim() === '') {
-                e.preventDefault();
-            } else {
+            let chat_message = $('textarea#chat_message_' + to_user_id).val();
+            if (chat_message.length !== 0) {
                 $.ajax({
                     url: "../global-resources/scripts/insert_chat.php",
                     method: "POST",
@@ -96,11 +94,13 @@ $(document).ready(function() {
                         chat_message: chat_message
                     },
                     success:function(data) {
-                        $('.chat_message_' + to_user_id).val('');
-                        $('.chat_history_' + to_user_id).html(data);
+                        $('textarea#chat_message_' + to_user_id).val('');
+                        $('#chat_history_' + to_user_id).html(data);
                         // KANSKE MÅSTE SÄTTA #chat_history_ ISTÄLLET FÖR .chat_history_
                     }
                 })
+            } else {
+                e.preventDefault();
             }
         }
     }

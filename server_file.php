@@ -15,7 +15,7 @@ if (mysqli_connect_errno()) {
 }
 function fetch_user_last_activity($user_id) {
     $query = "
-        SELECT last_activity FROM accounts_details
+        SELECT * FROM accounts_details
         WHERE user_id = ?
         ORDER BY last_activity DESC
         LIMIT 1
