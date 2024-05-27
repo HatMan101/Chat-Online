@@ -1,6 +1,9 @@
 <?php
 require 'server_file.php';
 
+$_POST["username"] = filter_var($_POST['username'], FILTER_SANITIZE_SPECIAL_CHARS);
+$_POST["password"] = filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
+
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 if ( !isset($_POST['username'], $_POST['password']) ) {
     // Could not get the data that should have been sent.

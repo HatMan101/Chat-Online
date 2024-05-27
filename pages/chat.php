@@ -38,7 +38,7 @@ require_once '../global-resources/components/navbar/navbar.html';
         </div>
     </div>
     <main class="row">
-        <section class="col">
+        <section id="userFriend" class="col">
             <div id="userDetails"></div>
         </section>
         <section id="chatWindow" class="col-7">
@@ -51,6 +51,11 @@ require_once '../global-resources/components/navbar/navbar.html';
         </section>
         <section class="col">
             <p>Friend or server info</p>
+            // Skapa en fil där kompisens namn, ID och konto skapades.
+            // Skapa en div där ett spel sedan läggs till, 4x4
+            <div id="miniGame">
+
+            </div>
         </section>
     </main>
 </body>

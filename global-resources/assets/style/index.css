@@ -25,23 +25,27 @@ body #addFriendsModal .modal-content .input-group button {
 body #addFriendsModal .modal-content .input-group input {
   margin-right: 1em;
 }
-body main #userDetails p {
+body main #userFriend {
+  padding-right: 0;
+}
+body main #userFriend #userDetails p {
   margin: 0;
 }
-body main #userDetails .start_chat {
+body main #userFriend #userDetails .start_chat {
   cursor: pointer;
 }
-body main #userDetails .friends_table div {
+body main #userFriend #userDetails .friends_table div {
   display: flex;
 }
-body main #userDetails .friends_table div p:first-child {
+body main #userFriend #userDetails .friends_table div p:first-child {
   flex: 1 0 auto;
 }
-body main #userDetails .friends_table div p:last-child {
+body main #userFriend #userDetails .friends_table div p:last-child {
   text-align: right;
   cursor: pointer;
 }
 body main #chatWindow {
+  padding-left: 0;
   padding-right: 0;
 }
 body main #chatWindow .user_dialog {
@@ -50,6 +54,7 @@ body main #chatWindow .user_dialog {
   flex-direction: column;
 }
 body main #chatWindow .user_dialog .chat_history {
+  margin-left: 1em;
   display: flex;
   flex-direction: column-reverse;
   height: 100%;

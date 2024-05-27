@@ -1,6 +1,9 @@
 <?php
 include '../../server_file.php';
 
+$_SESSION['user_id'] = filter_var($_SESSION['user_id'], FILTER_SANITIZE_NUMBER_INT);
+$_POST['friend_id'] = filter_var($_POST['friend_id'], FILTER_SANITIZE_NUMBER_INT);
+
 $query ="";
 if ($_SESSION['user_id'] < $_POST['friend_id']) {
     $query = "

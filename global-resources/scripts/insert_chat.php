@@ -1,6 +1,8 @@
 <?php
 require "../../server_file.php";
 
+$_POST['chat_message'] = filter_var($_POST['chat_message'], FILTER_SANITIZE_SPECIAL_CHARS);
+
 $data = array(
     $_POST['to_user_id'],
     $_SESSION['user_id'],

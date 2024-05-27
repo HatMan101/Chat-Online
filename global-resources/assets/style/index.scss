@@ -17,36 +17,43 @@ body {
   }
 
   main {
-    #userDetails {
-      p {
-        margin: 0;
-      }
+    #userFriend {
+      padding-right: 0;
 
-      .start_chat {
-        cursor: pointer;
-      }
-      .friends_table div {
-        display: flex;
+      #userDetails {
         p {
-          &:first-child {
-            flex: 1 0 auto;
-          }
-          &:last-child {
-            text-align: right;
-            cursor: pointer;
+          margin: 0;
+        }
+
+        .start_chat {
+          cursor: pointer;
+        }
+        .friends_table div {
+          display: flex;
+          p {
+            &:first-child {
+              flex: 1 0 auto;
+            }
+            &:last-child {
+              text-align: right;
+              cursor: pointer;
+            }
           }
         }
       }
     }
 
     #chatWindow {
+      padding-left: 0;
       padding-right: 0;
+      
       .user_dialog {
         height: calc(100vh - 75px);
         display: flex;
         flex-direction: column;
 
         .chat_history {
+          margin-left: 1em;
           display: flex;
           flex-direction: column-reverse;
           height: 100%;

@@ -8,7 +8,7 @@ $(document).ready(function() {
         fetch_user();
     }, 6000)
     setInterval(function() {
-        update_user_chat_history()
+        update_user_chat_history();
     }, 2500)
     $("textarea").keydown(enterKey);
 
@@ -55,6 +55,7 @@ $(document).ready(function() {
         let to_user_name = $(this).data('tousername');
         chat_area(to_user_id, to_user_name);
         fetch_user_chat_history(to_user_id);
+        miniGame();
     })
 
 
@@ -147,7 +148,6 @@ $(document).ready(function() {
 
     // Searches for the user on add
     $(document).on('click', '#buttonAddUsername',function() {
-
         let input = document.getElementById('inputUsername').value.trim().split("#");
         if (input[0] === "" || input[1] === "" || isNaN(Number(input[1]))) {
             errorMsg.classList.remove('invalid-feedback');
@@ -193,4 +193,15 @@ $(document).ready(function() {
             success:function() {}
         })
     })
+
+
+    function miniGame() {
+        $.ajax({
+            url: '../global-resources/components/4x4game/4x4gameSite.php',
+            method: 'POST',
+            success:function(data) {
+                $('#miniGame').html(data);
+            }
+        })
+    }
 })
